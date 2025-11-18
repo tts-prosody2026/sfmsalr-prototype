@@ -98,7 +98,8 @@ async function speak() {
   btnLabel.textContent = "Synthesizing...";
 
   try {
-    const resp = await fetch("/api/speak", {
+    const resp = await fetch("https://sfml-tts-proxy-253495793487.us-central1.run.app/api/speak", {
+
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text, format: fmt }),
