@@ -1,36 +1,46 @@
 <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SFML-ALR TTS</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
- 
+
 <body class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-slate-100 text-slate-900 antialiased">
   <div class="max-w-3xl mx-auto p-6">
+    
     <!-- Header -->
     <header class="mb-8">
       <h1 class="text-4xl font-extrabold tracking-tight text-indigo-700">SFML-ALR TTS</h1>
-      <p class="mt-2 text-sm text-slate-600">Script-First Multilingual Locale Resolution • Code-switch speech synthesis</p>
+      <p class="mt-2 text-sm text-slate-600">
+        Script-First Multilingual Locale Resolution • Code-switch speech synthesis
+      </p>
     </header>
 
     <!-- Card -->
     <section class="bg-white/80 backdrop-blur rounded-2xl shadow-lg border border-slate-100 p-6 space-y-6">
+
       <!-- Text -->
       <div>
         <div class="flex items-center justify-between mb-2">
           <label for="text" class="text-sm font-semibold text-slate-700">Text</label>
           <div id="charInfo" class="text-xs text-slate-500">0 / 1000 chars</div>
         </div>
+
         <textarea
           id="text"
           rows="6"
           maxlength="1000"
-          class="w-full rounded-xl border border-slate-300 p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-y"
+          class="w-full rounded-xl border border-slate-300 p-3 text-slate-800 
+                 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-y"
           placeholder="Hola, ¿cómo estás? Ciao, come stai oggi? आज का दिन बहुत सुन्दर है। 今天天气很好。 今日はいい気分です。 Bonjour, je suis ravi de te rencontrer !"
         ></textarea>
-        <p class="mt-2 text-xs text-slate-500">Limit: 1000 characters. Paste multilingual text—your audio will reflect language/script switches automatically.</p>
+
+        <p class="mt-2 text-xs text-slate-500">
+          Limit: 1000 characters. Paste multilingual text—your audio will reflect language/script switches automatically.
+        </p>
       </div>
 
       <!-- Format -->
@@ -46,16 +56,23 @@
       <div class="flex flex-wrap items-center gap-3">
         <button
           id="speakBtn"
-          class="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-2.5 text-white font-medium hover:bg-indigo-700 transition disabled:opacity-60 disabled:cursor-not-allowed"
+          class="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-2.5 
+                 text-white font-medium hover:bg-indigo-700 transition disabled:opacity-60 
+                 disabled:cursor-not-allowed"
         >
           <span id="btnLabel">Speak</span>
           <svg id="spinner" class="hidden animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4A4 4 0 004 12z"></path>
+            <circle class="opacity-25" cx="12" cy="12" r="10" 
+                    stroke="currentColor" stroke-width="4" fill="none"></circle>
+            <path class="opacity-75" fill="currentColor" 
+                  d="M4 12a8 8 0 018-8v4A4 4 0 004 12z">
+            </path>
           </svg>
         </button>
 
-        <a id="downloadLink" class="hidden text-indigo-700 font-medium hover:underline" download>Download audio</a>
+        <a id="downloadLink" class="hidden text-indigo-700 font-medium hover:underline" download>
+          Download audio
+        </a>
       </div>
 
       <!-- Error -->
@@ -65,6 +82,7 @@
       <div class="mt-1">
         <audio id="player" controls class="w-full rounded-xl bg-slate-100 shadow-inner"></audio>
       </div>
+
     </section>
 
     <!-- Footer -->
@@ -73,32 +91,8 @@
     </footer>
   </div>
 
-<script src="app.js"></script>
+  <!-- Load your JS -->
+  <script src="app.js"></script>
 
-
-  <!-- Character counter + validation -->
-  <script>
-    const textEl = document.getElementById('text');
-    const charInfo = document.getElementById('charInfo');
-    const errorEl = document.getElementById('error');
-    const speakBtn = document.getElementById('speakBtn');
-
-    function updateCount() {
-      const len = textEl.value.length;
-      charInfo.textContent = `${len} / 1000 chars`;
-
-      if (len > 1000) {
-        errorEl.textContent = "Character limit exceeded (max 1000).";
-        errorEl.classList.remove('hidden');
-        speakBtn.disabled = true;
-      } else {
-        errorEl.classList.add('hidden');
-        speakBtn.disabled = false;
-      }
-    }
-
-    textEl.addEventListener('input', updateCount);
-    updateCount();
-  </script>
 </body>
 </html>
